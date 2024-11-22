@@ -5,6 +5,7 @@ import * as enrollmentsDao from "../Enrollments/dao.js";
 export default function UserRoutes(app) {
   const createCourse = (req, res) => {
       const currentUser = req.session["currentUser"];
+      console.log('currentUser',currentUser);
       if (!currentUser) {
         res.status(401).json({ message: "Unauthorized: User not logged in" });
         return;

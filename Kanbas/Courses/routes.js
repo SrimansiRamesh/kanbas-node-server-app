@@ -4,7 +4,6 @@ import * as modulesDao from "../Modules/dao.js";
 export default function CourseRoutes(app) {
   app.get("/api/courses", (req, res) => {
     const courses = dao.findAllCourses();
-    console.log(courses);
     res.send(courses);
   });
 

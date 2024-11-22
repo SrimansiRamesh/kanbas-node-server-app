@@ -9,7 +9,7 @@ import "dotenv/config";
 import ModuleRoutes from './Kanbas/Modules/routes.js';
 import AssignmentRoutes from './Kanbas/Assignments/routes.js';
 import EnrollmentRoutes from './Kanbas/Enrollments/routes.js';
-
+//test comment
 const app = express()
 app.use(cors({
     credentials: true,
@@ -19,7 +19,6 @@ const sessionOptions = {
     secret: process.env.SESSION_SECRET || "kanbas",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },
   };
   if (process.env.NODE_ENV !== "development") {
     sessionOptions.proxy = true;

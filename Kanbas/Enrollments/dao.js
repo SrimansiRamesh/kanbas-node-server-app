@@ -1,22 +1,10 @@
 import Database from "../Database/index.js";
+
 export function enrollUserInCourse(userId, courseId) {
   const { enrollments } = Database;
-  const isAlreadyEnrolled = enrollments.some(
-    (enrollment) => enrollment.user === userId && enrollment.course === courseId
-  );
-
-  if (isAlreadyEnrolled) {
-    return null; 
-  }
-
-  const newEnrollment = {
-    _id: Date.now().toString(),
-    user: userId,
-    course: courseId,
-  };
-  enrollments.push(newEnrollment);
-  return newEnrollment;
+  enrollments.push({ _id: Date.now(), user: userId, course: courseId });
 }
+
 
 export function unenrollUserFromCourse(userId, courseId) {
   const { enrollments } = Database;

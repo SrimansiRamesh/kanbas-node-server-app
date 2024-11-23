@@ -8,6 +8,7 @@ export function findCoursesForEnrolledUser(userId) {
     enrollments.some((enrollment) => enrollment.user === userId && enrollment.course === course._id));
   return enrolledCourses;
 }
+
 export function createCourse(course) {
   const newCourse = { ...course, _id: Date.now().toString() };
   Database.courses = [...Database.courses, newCourse];

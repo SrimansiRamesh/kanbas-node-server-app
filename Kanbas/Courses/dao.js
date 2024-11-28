@@ -2,6 +2,7 @@ import Database from "../Database/index.js";
 export function findAllCourses() {
   return Database.courses;
 }
+
 export function findCoursesForEnrolledUser(userId) {
   const { courses, enrollments } = Database;
   const enrolledCourses = courses.filter((course) =>
@@ -11,6 +12,7 @@ export function findCoursesForEnrolledUser(userId) {
 
 export function createCourse(course) {
   const newCourse = { ...course, _id: Date.now().toString() };
+  console.log(newCourse);
   Database.courses = [...Database.courses, newCourse];
   return newCourse;
 }
@@ -20,7 +22,6 @@ export function deleteCourse(courseId) {
   Database.enrollments = enrollments.filter(
     (enrollment) => enrollment.course !== courseId
   );
-
 }
 
 export function updateCourse(courseId, courseUpdates) {
@@ -29,6 +30,11 @@ export function updateCourse(courseId, courseUpdates) {
   Object.assign(course, courseUpdates);
   return course;
 }
+
+export function findCoursesById(courseId) {
+  const { courses } = Database;
+  return courses.filter((course) => course._id === courseId);
+}  
 
 
 

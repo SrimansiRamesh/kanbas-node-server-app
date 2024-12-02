@@ -11,12 +11,12 @@ import AssignmentRoutes from './Kanbas/Assignments/routes.js';
 import EnrollmentRoutes from './Kanbas/Enrollments/routes.js';
 import mongoose from "mongoose";
 
-const CONNECTION_STRING = "mongodb://127.0.0.1:27017/Kanbas"
+const CONNECTION_STRING = "mongodb+srv://srimansiramesh:Mongo%401537@kanbas.ua1vs.mongodb.net/Kanbas"
 mongoose.connect(CONNECTION_STRING);
 const app = express()
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://a5--kanbas-react-web-app-assignment.netlify.app",
 })); 
 const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kanbas",

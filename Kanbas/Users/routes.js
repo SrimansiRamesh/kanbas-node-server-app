@@ -70,7 +70,6 @@ export default function UserRoutes(app) {
   const signin = async (req, res) => {
     const { username, password } = req.body;
     const currentUser = await dao.findUserByCredentials(username, password);
-    console.log(currentUser);
     if (currentUser) {
       req.session["currentUser"] = currentUser;
       currentUserId = req.session["currentUser"]._id;
@@ -78,12 +77,9 @@ export default function UserRoutes(app) {
     } else {
       res.status(401).json({ message: "Unable to login. Try again later." });
     }
-    console.log("signin-user");
-    console.log(req.session["currentUser"]);
   };
 
   const profile = (req, res) => {
-    console.log("eeeeee", req.session);
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
       res.sendStatus(401);
@@ -112,28 +108,14 @@ export default function UserRoutes(app) {
   };
 
   const findCoursesForUser = async (req, res) => {
-    console.log('in routes- finding courses');
     const currentUser = currentUserId;
-    console.log(currentUser);
     if (!currentUser) {
       res.sendStatus(401);
       return;
     }
-    // if (currentUser.role === "ADMIN") {
-    //   const courses = await courseDao.findAllCourses();
-    //   res.json(courses);
-    //   return;
-    // }
     let { uid } = req.params;
-    // console.log(uid);
-    // if (uid === currentUserId) {
-    //   console.log('inside current if');
-    //   uid = currentUser._id;
-    // }
     const courses = await enrollmentsDao.findCoursesForUser(currentUserId);
     res.json(courses);
-    // const courses = await enrollmentsDao.findCoursesForUser(currentUserId);
-    // res.json(courses);
   };
   app.get("/api/users/:uid/courses", findCoursesForUser);
 
@@ -156,9 +138,9 @@ export default function UserRoutes(app) {
     const status = await enrollmentsDao.unenrollUserFromCourse(uid, cid);
     res.send(status);
   };
+  
   app.post("/api/users/:uid/courses/:cid", enrollUserInCourse);
   app.delete("/api/users/:uid/courses/:cid", unenrollUserFromCourse);
- 
   app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);

@@ -13,7 +13,7 @@ export default function QuestionsRoutes(app) {
   });
 
   //updating question
-  app.put("/api/quizzes/:quizId/question/:questionId", async (req, res) => {
+  app.put("/api/questions/:questionId", async (req, res) => {
     const { questionId } = req.params;
     console.log(questionId);
     const updates = req.body;
@@ -43,4 +43,19 @@ export default function QuestionsRoutes(app) {
       console.error("Error fetching questions for quiz:", error);
       res.status(500).json({ error: "Failed to fetch questions" });
     }});
+
+  //delete questions
+  app.delete("/api/questions/:questionId",async (req, res) => {
+    const { questionId } = req.params;
+    try {
+      const status = await questionsDao.deleteQuestions(questionId);
+      if (!status) {
+        return res.status(404).json({ error: "Question not found" });
+      }
+      res.sendStatus(204); // No Content
+    } catch (error) {
+      console.error("Error deleting question:", error);
+      res.status(500).json({ error: "Failed to delete questions" });
+    }
+  });
 }

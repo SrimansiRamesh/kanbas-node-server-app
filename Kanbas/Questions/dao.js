@@ -14,6 +14,6 @@ export function updateQuestions(questionId,updates){
 
 }
 
-export function deleteQuizzes(questionId){
+export function deleteQuestions(questionId){
     return model.deleteOne({ _id: questionId });
 }

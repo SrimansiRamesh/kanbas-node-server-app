@@ -24,4 +24,23 @@ const schema = new mongoose.Schema(
   { collection: "quizzes" },
   { timestamps: true }
 );
+// schema.virtual("formattedDueDate").get(function () {
+//   if (this.dueDate) {
+//     return this.dueDate.toLocaleDateString("en-US", {
+//       day: "2-digit",
+//       month: "short",
+//     });
+//   }
+//   return null;
+// });
+
+// schema.virtual("formattedAvailableDate").get(function () {
+//   if (this.availableDate) {
+//     return this.availableDate.toLocaleDateString("en-US", {
+//       day: "2-digit",
+//       month: "short",
+//     });
+//   }
+//   return null;
+// });
   export default schema;

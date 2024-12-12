@@ -6,8 +6,8 @@ export function createAttempt(attempt) {
     return model.create(attempt); 
 }
 
-export function findAttemptsforUser(userId){
-    return model.find({ student: userId });
+export function findAttemptsforUser(userId, quizId) {
+    return model.find({ student: userId, quiz: quizId });
 }
 
 export function updateAttempts(attemptId,updates){

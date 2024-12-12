@@ -17,3 +17,7 @@ export function updateQuestions(questionId,updates){
 export function deleteQuestions(questionId){
     return model.deleteOne({ _id: questionId });
 }
+
+export async function getQuestionByID(questionId,quizId) {
+    return model.findOne({ _id: questionId, quiz: quizId }); 
+  }

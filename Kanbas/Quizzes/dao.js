@@ -14,6 +14,9 @@ export function updateQuizzes(quizId,updates){
 
 }
 
+export function findQuizById(quizId){
+    return model.find({_id:quizId});
+}
 export function deleteQuizzes(quizId){
     return model.deleteOne({ _id: quizId });
 }

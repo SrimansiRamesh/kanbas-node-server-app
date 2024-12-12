@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const AttemptSchema = new mongoose.Schema({
     quiz: { type: mongoose.Schema.Types.ObjectId, ref: 'Quiz', required: true },
     student: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    attemptNumber: { type: Number, required: true },
+    attemptNumber: { type: Number, required: true,default:0 },
     answers: [{
       question: { type: mongoose.Schema.Types.ObjectId, ref: 'Question', required: true },
       selectedAnswer: String,
